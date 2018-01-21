@@ -93,20 +93,20 @@
 <!--<script src="../js/jQuery.js"></script>-->
 <script>
     // 登录模块start
-    // const login = document.querySelector(".btn.btn-primary");
-    // // console.log(login);
-    // login.onclick = () => {
-    //     let username = document.getElementById("username").value;
-    //     let password = document.getElementById("password").value;
-    //     // console.log(username);
-    //     $.post('../handle/route', {
-    //         username: username,
-    //         password: password,
-    //     }), (res) => {
-    //         console.log(res);
-    //     }
-    // }
-    //登录模块end
+    const login = document.querySelector(".btn.btn-primary");
+    // console.log(login);
+    login.onclick = () => {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        // console.log(username);
+        $.post('../../handle/server', {
+            username: username,
+            password: password,
+        }), (res) => {
+            console.log(res);
+        }
+    }
+    // 登录模块end
 </script>
 </body>
 </html>
