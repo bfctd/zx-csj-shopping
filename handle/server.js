@@ -3,6 +3,7 @@ let url = require("url");
 let querystring = require("querystring");
 let fs = require("fs");
 
+
 //post
 let postData = '';
 
@@ -19,7 +20,30 @@ function createserver() {
             //连接数据库
             console.log(postData);
 
+            // let connection = mysql.createConnection({
+            //     host: 'localhost',
+            //     user: 'root',
+            //     password: 'Zj1396673812',
+            //     database: 'zx-csj-shopping'
+            // });
+            //
+            // connection.connect();
+            //
+            // connection.query('select * from userinfo where username=13207623002',
+            //     (error, results) => {
+            //         if (error) throw error;
+            //         if (results!=0){
+            //             let data = {is_succeed:true}
+            //             res.writeHead(200, {'content-Type': 'text/html;charset="utf-8"'});
+            //             // res.write(JSON.stringify(data));
+            //             res.end('dddd');
+            //             // console.log(data);
+            //         };
+            //     });
+            //
+            // connection.end();
         });
+
 
         function indexPage() {
             fs.readFile(view + '/index.html', (err, data) => {
