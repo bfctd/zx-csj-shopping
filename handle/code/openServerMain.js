@@ -20,23 +20,36 @@ let root = path.resolve(process.argv[2] || '.');
 // const view = 'F:/人生一路奋斗/项目/zx-csj-shopping/view';
 //
 // 创建主服务器的函数
-function createServer() {
+function createServer(apiIndex) {
     http.createServer((req, res) => {
         let pathname = url.parse(req.url).pathname;
         let filepath = path.join(root + '../../../view', pathname);
-        // console.log(filepath);
-        fs.stat(filepath, (err, stats) => {
-            if (!err && stats.isFile()) {
-                // 没有出错并且文件存在:
-                res.writeHead(200);
-                // 将文件流导向response:
-                fs.createReadStream(filepath).pipe(res);
-            } else {
-                // 出错了或者文件不存在,发送404响应:
-                res.writeHead(404);
-                res.end('404 Not Found');
-            }
-        });
+
+        let api = /^\/api/
+        if (api.test(pathname)) {
+            apiIndex(pathname);
+        }
+        else {
+            fs.stat(filepath, (err, stats) => {
+                if (pathname == '/') {
+                    res.writeHead(200);
+                    filepath += '/index.html';
+                    fs.createReadStream(filepath).pipe(res);
+                }
+                else {
+                    if (!err && stats.isFile()) {
+                        // 没有出错并且文件存在:
+                        res.writeHead(200);
+                        // 将文件流导向response:
+                        fs.createReadStream(filepath).pipe(res);
+                    } else {
+                        // 出错了或者文件不存在,发送404响应:
+                        res.writeHead(404);
+                        res.end('404 Not Found');
+                    }
+                }
+            });
+        }
         // res.writeHead(200, {'content-Type': 'text/html;charset="utf-8"'});
         // res.end();
     }).listen(8888);
