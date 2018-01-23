@@ -26,6 +26,8 @@ function createServer(apiIndex) {
         let filepath = path.join(root + '../../../view', pathname);
         let ajaxServerHandle = {req: req, res: res};
 
+        res.setHeader('Access-Control-Allow-Origin', '*');
+
         let api = /^\/api/
         if (api.test(pathname)) {
             // console.log(pathname+'path');
@@ -57,7 +59,7 @@ function createServer(apiIndex) {
         }
         // res.writeHead(200, {'content-Type': 'text/html;charset="utf-8"'});
         // res.end();
-    }).listen(8888);
+    }).listen(80);
 }
 
 //         //路径

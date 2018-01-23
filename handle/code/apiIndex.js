@@ -7,6 +7,7 @@ function apiIndex(pathname, ajaxServerHandle) {
         case '/api/login':
             login.login(ajaxServerHandle);
             break;
+        default:console.log("错大发了");
     }
 }
 
