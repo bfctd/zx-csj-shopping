@@ -7318,16 +7318,22 @@
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 col-xs-12 form-section">
-            <h3 class="h3 text-center">欢迎登录</h3>
+            <h3 id="h3text" class="h3 text-center">欢迎登录</h3>
             <div class="form-input">
                 <form action="##" method="post" onsubmit="return false">
                     <input type="text" class="form-control" id="username" placeholder="请输入你的用户名">
                     <input type="password" class="form-control" id="password" placeholder="请输入你的密码">
+                    <div id="moreInput">
+                        <input type="number" max="12" class="form-control" id="phone" placeholder="收货手机号">
+                        <input type="text" class="form-control" id="address" placeholder="收货地址(非必填项)">
+                    </div>
                 </form>
             </div>
-            <button class="btn btn-primary">登录</button>
+            <button class="btn btn-primary" id="loginBtn">登录</button>
+            <button class="btn btn-primary" id="logonBtn">注册</button>
             <p class="clearfix">
-                <span class="text-left fl">找回密码</span><span class="text-right fr">新用户注册</span>
+                <!--<span class="text-left fl pointer">找回密码</span>-->
+                <span class="text-right fr pointer">新用户注册</span>
             </p>
         </div>
         <div class="col-md-4"></div>
@@ -7336,30 +7342,56 @@
 <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 <!--<script src="../js/jQuery.js"></script>-->
 <script>
-    // 登录模块start
-    const login = document.querySelector(".btn.btn-primary");
+    $(() => {
+        //初始化
+        const logonBtn = $("#logonBtn");
+        logonBtn.hide();
+        $("#moreInput").hide();
 
-    login.onclick = () => {
-        let username = document.getElementById("username").value;
-        let password = document.getElementById("password").value;
+        // 登录模块
+        const login = document.getElementById("loginBtn");
 
-        $.post('http://localhost/api/login', {
-            username: username,
-            password: password,
-        }, (res) => {
-            console.log(res);
-        }, 'json');
-        // $.ajax({
-        //     type: 'POST',
-        //     url: 'http://localhost/api/login',
-        //     data: {username: username, password: password},
-        //     success: function (res) {
-        //         console.log(res);
-        //     },
-        //     dataType: "text"
-        // });
-    }
-    // 登录模块end
+        let isoff = true;
+        login.onclick = () => {
+            isoff = !isoff;
+            login.disabled = "disabled";
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            $.post('http://localhost/api/login', {
+                username: username,
+                password: password,
+            }, (res) => {
+                console.log(res);
+                if (res.is_succeed) {
+                    isoff = !isoff
+                }
+            }, 'json');
+            // $.ajax({
+            //     type: 'POST',
+            //     url: 'http://localhost/api/login',
+            //     data: {username: username, password: password},
+            //     success: function (res) {
+            //         console.log(res);
+            //     },
+            //     dataType: "text"
+            // });
+        }
+
+        //注册
+        const logon = document.querySelector(".text-right.fr.pointer");
+        const h3text = document.getElementById("h3text");
+
+        $(logon).on('click', () => {
+            $(h3text).text("欢迎注册");
+            logonBtn.show();
+            $(login).hide();
+            logon.disabled = "disabled";
+            logon.style.opacity = "0";
+            $("#moreInput").show();
+            $(".form-section").css({"transform": "translate(-50%,-58%)"})
+        });
+    })
 </script>
 </body>
 </html>
