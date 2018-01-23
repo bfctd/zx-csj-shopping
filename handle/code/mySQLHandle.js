@@ -1,7 +1,8 @@
 const mysql = require('mysql');
 
-//mySQLHandle接收两个参数，第一个为对数据库进行增删改中的其中一种操作
+//mySQLHandle接收三个参数，第一个为对数据库进行增删改中的其中一种操作
 //                       第二个为操作的数据
+//                       第三个为数据库操作返回的回调函数，这个回调接受一个参数，为返回的json数据
 function mySQLHandle(type, data, SQLresult) {
     // // 创建连接数据库的参数
     let connection = mysql.createConnection({

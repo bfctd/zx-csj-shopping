@@ -7308,7 +7308,7 @@
     </style>
     <!--<link rel="stylesheet" href="../css/bootstrap.min.css">-->
 
-    <!--<link rel="stylesheet" href="../css/login.scss">-->
+    <link rel="stylesheet" href="../css/login.scss">
 </head>
 <body>
 <div class="page loginpage">
@@ -7332,49 +7332,23 @@
         </div>
         <div class="col-md-4"></div>
     </div>
-    <!--<div class="row">-->
-    <!--<div class="col-md-12 col-xs-12">-->
-    <!--<h1 class="h2 text-center">欢迎注册</h1>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-    <!--<div class="col-md-1"></div>-->
-    <!--<div class="col-md-10">-->
-    <!--<div class="col-xs-12 col-md-9">-->
-    <!--<div class="bgcolor"></div>-->
-    <!--</div>-->
-    <!--<div class="col-xs-12 col-md-3">-->
-    <!--<div class="form-group">-->
-    <!--<label for="username">用户名</label>-->
-    <!--<input type="text" class="form-control" id="username" placeholder="请输入你的用户名">-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-    <!--<label for="password">密码</label>-->
-    <!--<input type="password" class="form-control" id="password" placeholder="请输入你的密码">-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-md-1"></div>-->
-    <!--</div>-->
 </div>
 <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 <!--<script src="../js/jQuery.js"></script>-->
 <script>
     // 登录模块start
     const login = document.querySelector(".btn.btn-primary");
-    // console.log(login);
+
     login.onclick = () => {
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
-        // console.log(username);
-        // bug
+
         $.post('http://localhost/api/login', {
             username: username,
             password: password,
-        },(res) => {
+        }, (res) => {
             console.log(res);
-        },'json');
-
+        }, 'json');
         // $.ajax({
         //     type: 'POST',
         //     url: 'http://localhost/api/login',
@@ -7384,7 +7358,6 @@
         //     },
         //     dataType: "text"
         // });
-
     }
     // 登录模块end
 </script>
