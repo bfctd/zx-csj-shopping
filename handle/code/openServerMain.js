@@ -24,10 +24,15 @@ function createServer(apiIndex) {
     http.createServer((req, res) => {
         let pathname = url.parse(req.url).pathname;
         let filepath = path.join(root + '../../../view', pathname);
+        let ajaxServerHandle = {req: req, res: res};
 
         let api = /^\/api/
         if (api.test(pathname)) {
-            apiIndex(pathname);
+            // console.log(pathname+'path');
+            // console.log(root+'root');
+            // pathname = root + '/api'+pathname;
+            // console.log(pathname+'dddddddddddddd');
+            apiIndex(pathname, ajaxServerHandle);
         }
         else {
             fs.stat(filepath, (err, stats) => {

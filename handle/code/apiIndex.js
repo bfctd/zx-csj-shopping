@@ -1,11 +1,13 @@
-let userLogin = require('.userLogin')
+let login = require('./api/login')
 
-function apiLink(pathname) {
+function apiIndex(pathname, ajaxServerHandle) {
+    // console.log(pathname);
     switch (pathname) {
-        case '/api/Login':
-            userLogin.userLogin;
+        // 执行登录注册
+        case '/api/login':
+            login.login(ajaxServerHandle);
             break;
     }
 }
 
-exports.apiLink = apiLink;
+exports.apiIndex = apiIndex;

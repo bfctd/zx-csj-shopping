@@ -6,7 +6,7 @@ let apiIndex = require("./apiIndex");
 // let route = require("./route");
 
 //启动主服务器
-openServerMain.createServer(apiIndex);
+openServerMain.createServer(apiIndex.apiIndex);
 
 
 

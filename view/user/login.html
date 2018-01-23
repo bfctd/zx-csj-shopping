@@ -99,7 +99,7 @@
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
         // console.log(username);
-        $.post('../../handle/server', {
+        $.post('http://localhost:8888/api/login', {
             username: username,
             password: password,
         }), (res) => {
