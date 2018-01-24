@@ -15,7 +15,36 @@ function mySQLHandle(type, data, SQLresult) {
 
     let SQL = {
         insert(data, SQLresult) {
-            console.log("Xxxxxx");
+            const str = 'SELECT * FROM userinfo WHERE phone="' + data.phone + '"';
+            connection.query(str, (error, results) => {
+                if (error) {
+                    SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
+                }
+                else {
+                    results == 0 ? insertFun(data, SQLresult) : SQLresult(JSON.stringify({is_succeed: false}));
+                }
+
+                function insertFun(data, SQLresult) {
+                    let connection = mysql.createConnection({
+                        host: 'localhost',      //数据库地址
+                        user: 'root',
+                        password: 'Zj1396673812',
+                        database: 'zx-csj-shopping'     //数据库名称
+                    });
+                    connection.connect();
+                    const str = 'INSERT INTO userinfo(username,password,phone,address) VALUES ("' +
+                        data.username + '","' + data.password + '","' + data.phone + '","' + data.address + '")';
+                    connection.query(str, (error, results) => {
+                        if (error) {
+                            SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
+                        }
+                        else {
+                            results != 0 ? SQLresult(JSON.stringify({is_succeed: true})) : SQLresult(JSON.stringify({is_succeed: false}));
+                        }
+                    })
+                    connection.end();
+                }
+            });
         },
         delete(data, SQLresult) {
             console.log("YYYYYY")
@@ -28,7 +57,6 @@ function mySQLHandle(type, data, SQLresult) {
             connection.query(str, (error, results) => {
                 if (error) {
                     SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
-                    connection.end();
                 }
                 else {
                     results != 0 ? SQLresult(JSON.stringify({is_succeed: true})) : SQLresult(JSON.stringify({is_succeed: false}));

@@ -5,6 +5,7 @@
  * 全局安装 fis3: sudo npm install -g fis3
  * 安装less插件 : sudo npm install -g fis-parser-less-2.x
  * 安装sass插件 : sudo npm install fis3-parser-node-sass -g
+ * 安装ES6转ES5插件    npm i fis-parser-babel-5.x -g
  * 开发命令     : fis3 server start //开启fis3 本地server
  *                fis3 server open  //打开fis3 本地server文件夹路径
  *                fis3 server clean //清空本地server文件夹路径内容
@@ -83,6 +84,10 @@ fis.media("prod")
             "cascade": true
         })
     })
+    .match('*.jsx', {
+        parser: fis.plugin('babel-5.x')
+    })
+
     //将代码直接部署至./output下
     .match('*', {
         deploy: fis.plugin('local-deliver', {

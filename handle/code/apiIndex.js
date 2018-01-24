@@ -13,7 +13,7 @@ function apiIndex(pathname, ajaxServerHandle) {
             break;
         // 执行注册
         case '/api/logon':
-            login.login(ajaxServerHandle);
+            logon.logon(ajaxServerHandle);
             break;
         default:
             console.log("错大发了");

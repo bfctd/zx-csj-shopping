@@ -8,5 +8,3 @@ npm update                  更新所用到的三方库
 
 选择安装
 supervisor node xxx         实时刷新服务器
-编码规范
-导出的驼峰表示法为自己写的

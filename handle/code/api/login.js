@@ -11,6 +11,10 @@ function login(ajaxServerHandle) {
         // 去连接数据库--查询post请求中的参数,1为增,2为删,3为改,4为查
         mySQLHandle.mySQLHandle(4, postData, SQLresult);
     });
+    ajaxServerHandle.req.on('end', () => {
+        //将post参数初始化
+        postData = '';
+    })
 
     function SQLresult(SQLresultData) {
         ajaxServerHandle.res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
