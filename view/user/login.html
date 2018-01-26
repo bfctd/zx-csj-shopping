@@ -106,7 +106,7 @@
 <div class="page loginpage">
     <div class="row">
         <div class="page-bgimg img-responsive">
-            <!--<img class="img-cover" src="../imgs/logo.png" alt="">-->
+            <img class="img-cover" alt="">
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 col-xs-12 form-section">
@@ -174,7 +174,7 @@
 
         //获取大背景图片
         $.get('http://127.0.0.1/api/log_random', (res) => {
-            $(".page-bgimg.img-responsive img").src = res.img_href;
+            $(".page-bgimg.img-responsive img")[0].src = res.img_url;
         }, 'json');
 
 
