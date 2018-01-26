@@ -10,7 +10,7 @@ function mySQLHandle(type, data, SQLresult) {
         user: 'bdm25865873',
         password: 'Zj1396673812',
         database: 'bdm25865873_db',     //数据库名称
-        insecureAuth:true,             //低版本兼容
+        insecureAuth: true,             //低版本兼容
     });
     connection.connect();
 
@@ -19,7 +19,8 @@ function mySQLHandle(type, data, SQLresult) {
             const str = 'SELECT * FROM userinfo WHERE phone="' + data.phone + '"';
             connection.query(str, (error, results) => {
                 if (error) {
-                    SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
+                    SQLresult(JSON.stringify({error: error.message}));
+                    SQLresult(JSON.stringify({text: "数据库或者查询串连接失败in-select"}));
                 }
                 else {
                     results == 0 ? insertFun(data, SQLresult) : SQLresult(JSON.stringify({is_succeed: false}));
@@ -27,17 +28,18 @@ function mySQLHandle(type, data, SQLresult) {
 
                 function insertFun(data, SQLresult) {
                     let connection = mysql.createConnection({
-                        host: 'localhost',      //数据库地址
-                        user: 'root',
+                        host: 'bdm25865873.my3w.com',      //数据库地址
+                        user: 'bdm25865873',
                         password: 'Zj1396673812',
-                        database: 'zx-csj-shopping'     //数据库名称
+                        database: 'bdm25865873_db',     //数据库名称
+                        insecureAuth: true,             //低版本兼容
                     });
                     connection.connect();
                     const str = 'INSERT INTO userinfo(username,password,phone,address) VALUES ("' +
                         data.username + '","' + data.password + '","' + data.phone + '","' + data.address + '")';
                     connection.query(str, (error, results) => {
                         if (error) {
-                            SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
+                            SQLresult(JSON.stringify({text: "数据库或者查询串连接失败insert"}));
                         }
                         else {
                             results != 0 ? SQLresult(JSON.stringify({is_succeed: true})) : SQLresult(JSON.stringify({is_succeed: false}));
@@ -54,10 +56,9 @@ function mySQLHandle(type, data, SQLresult) {
             console.log("ZZZZZ")
         },
         select(data, SQLresult) {
-            const str = 'select * from userinfo where username="' + data.username + '"and password="' + data.password + '"';
+            const str = 'SELECT * FROM userinfo WHERE username="' + data.username + '"AND password="' + data.password + '"';
             connection.query(str, (error, results) => {
                 if (error) {
-                    console.log(error.message)
                     SQLresult(JSON.stringify({text: "数据库或者查询串连接失败"}));
                 }
                 else {

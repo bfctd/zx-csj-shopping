@@ -12,6 +12,7 @@ const fs = require("fs");
 // 而第一个命令行参数从argv[2]开始
 let root = path.resolve(process.argv[2] || '.');
 
+
 // 创建主服务器的函数
 function createServer(apiIndex) {
     http.createServer((req, res) => {
