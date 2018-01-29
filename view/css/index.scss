@@ -1,0 +1,83 @@
+@import "base.scss";
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.navbar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    img {
+      width: 90px;
+      height: 90px;
+      margin-top: -20px;
+    }
+  }
+  .navbar-form {
+    text-align: center;
+    input {
+      width: 520px;
+    }
+  }
+  .glyphicon.glyphicon-piggy-bank {
+    font-size: 18px;
+    vertical-align: text-bottom;
+    margin-right: 4px;
+  }
+  .text-car {
+    color: #e53939;
+  }
+}
+
+@media (max-width: 968px) {
+  .navbar .navbar-form input {
+    width: 100%;
+  }
+}
+
+.link-bar {
+  margin-bottom: 20px;
+  text-align: center;
+  a {
+    padding: 0 20px;
+  }
+}
+
+.content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 8%;
+  margin-top: 15px;
+  h3 {
+    margin-top: 0;
+  }
+  .h4 {
+    color: #e53939;
+    margin-left: 10px;
+  }
+  .thumbnail {
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+      padding: 0 0 5px;
+    }
+  }
+}
+
+@media (max-width: 968px) {
+  .content {
+    padding: 0;
+  }
+}
+
+.jumbotron {
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #666;
+}
