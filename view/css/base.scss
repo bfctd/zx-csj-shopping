@@ -1,14 +1,22 @@
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+//sass
 .img-cover {
   display: block;
   width: 100%;
   height: 100%;
 }
-.fl{
-  float: left;
-}
-.fr{
-  float: right;
-}
-.pointer{
-  cursor: pointer;
+
+@mixin computed($data:150px) {
+  font-size: $data;
 }
