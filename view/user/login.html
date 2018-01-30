@@ -164,6 +164,25 @@
     function link(val) {
         window.location.href = val;
     }
+
+    function setCookie(cname, cvalue, exdays) {
+        const date = new Date();
+        date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        cname = cname + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(cname) == 0) {
+                return c.substring(cname.length, c.length);
+            }
+        }
+        return "";
+    }
 </script>
 <script>
     $(() => {
@@ -181,15 +200,41 @@
         // 登录模块
         const login = document.getElementById("loginBtn");
 
-        var isoff = true;
+        let cusername = getCookie("username");
+        let cpassword = getCookie("password");
+
+        if (cusername != '' && cpassword != '') {
+            var username = cusername;
+            var password = cpassword;
+            $.post('http://127.0.0.1/api/login', {
+                username: username,
+                password: password,
+            }, (res) => {
+                if (res.is_succeed == false) {
+                    $('#alertBox').modal("show");
+                    alertNull("程序出错");
+                }
+                else if (res.is_succeed == true) {
+                    // link("http://127.0.0.1:8080");
+                }
+                else {
+                    alertNull(res.text);
+                }
+            }, 'json');
+        }
+
+        let isoff = true;
         login.onclick = () => {
             if (isoff = true) {
                 isoff = !isoff;
                 login.disabled = "disabled";
-                let username = document.getElementById("username").value;
-                let password = document.getElementById("password").value;
 
-                $.post('http://www.bfctd.xin/api/login', {
+                if (username != '' && password != '') {
+                    var username = document.getElementById("username").value;
+                    var password = document.getElementById("password").value;
+                }
+
+                $.post('http://127.0.0.1/api/login', {
                     username: username,
                     password: password,
                 }, (res) => {
@@ -200,6 +245,8 @@
                         alertNull("密码错误，重新输入吧");
                     }
                     else if (res.is_succeed == true) {
+                        setCookie("username", username, 7);
+                        setCookie("password", password, 7);
                         link("http://www.bfctd.xin");
                     }
                     else {

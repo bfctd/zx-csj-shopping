@@ -15,7 +15,7 @@ html, body, .login {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    filter: blur(10px);
+    filter: blur(2px);
     transform: scale(1.1);
     img{
       @extend .img-cover;
@@ -24,7 +24,7 @@ html, body, .login {
       content: " ";
       position: absolute;
       display: block;
-      background-color: rgba(0, 0, 0, .1);
+      background-color: rgba(0, 0, 0, .3);
       width: 100%;
       height: 100%;
     }
@@ -43,7 +43,10 @@ html, body, .login {
         margin-top: 14px;
         background-color: rgba(0, 0, 0, .1);
         border: 0;
-        color: #f5f5f5;
+        color: #e7e7e7;
+        &::-webkit-input-placeholder{
+          color: #e7e7e7;
+        }
       }
     }
     .btn {
