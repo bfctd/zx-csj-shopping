@@ -1,5 +1,8 @@
 let login = require('./api/login');
 let logon = require('./api/logon');
+let index = require('./api/index');
+let page = require('./api/page');
+let detail = require('./api/detail');
 let log_random = require('./api/log_random');
 let select_product = require('./api/select_product');
 
@@ -8,11 +11,19 @@ function apiIndex(pathname, ajaxServerHandle) {
     switch (pathname) {
         // 首页
         case '/api/index':
-            login.login(ajaxServerHandle);
+            index.index(ajaxServerHandle);
+            break;
+        // 首页翻页
+        case '/api/page':
+            page.page(ajaxServerHandle);
             break;
         // 搜索商品
         case '/api/select_product':
             select_product.select_product(ajaxServerHandle);
+            break;
+        // 商品详情
+        case '/api/detail':
+            detail.detail(ajaxServerHandle);
             break;
         // 执行登录
         case '/api/login':

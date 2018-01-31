@@ -1,0 +1,58 @@
+html{
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  padding-bottom: 120px;
+}
+
+.navbar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+    img {
+      width: 90px;
+      height: 90px;
+      margin-top: -20px;
+    }
+  }
+  .navbar-form {
+    text-align: center;
+    input {
+      width: 520px;
+    }
+  }
+  .glyphicon.glyphicon-piggy-bank {
+    font-size: 18px;
+    vertical-align: text-bottom;
+    margin-right: 4px;
+  }
+  .text-car {
+    color: #e53939;
+  }
+}
+
+@media (max-width: 968px) {
+  .navbar .navbar-form input {
+    width: 100%;
+  }
+}
+
+.jumbotron {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  margin-bottom: 0;
+  font-size: 13px;
+  color: #666;
+}

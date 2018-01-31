@@ -4,12 +4,11 @@ const url = require('url');
 let connSQL = require("../connect/connSQL");
 
 
-function select_product(ajaxServerHandle) {
-    let getData = querystring.parse(url.parse(ajaxServerHandle.req.url).query);
-
+function page(ajaxServerHandle) {
     connSQL.conn();
-
-    const str = 'SELECT * FROM product_info WHERE product_name LIKE "%' + getData.selsctText + '%"';
+    let getData = querystring.parse(url.parse(ajaxServerHandle.req.url).query);
+    const str = 'SELECT * FROM product_info LIMIT 12 OFFSET ' + (12 * getData.page);
+    console.log(str);
     connSQL.query().query(str, (error, results) => {
         if (error) {
             ajaxServerHandle.res.end(JSON.stringify({text: "数据库或者查询串连接失败"}));
@@ -18,9 +17,8 @@ function select_product(ajaxServerHandle) {
             ajaxServerHandle.res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
             ajaxServerHandle.res.end(JSON.stringify({data: results}));
         }
-    });
-
+    })
     connSQL.end();
 }
 
-exports.select_product = select_product;
+exports.page = page;
